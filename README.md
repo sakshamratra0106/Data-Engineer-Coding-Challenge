@@ -1,3 +1,5 @@
+##This ReadMe file is also provided in well formated manner in an WordDocument "ReadME.docx"
+
 We will be exploring Lending Club’s loan origination data from 2007-2015. Please download the dataset in CSV format (loan.csv) and associated dictionary (LCDataDictionary.xlsx) fromhttps://www.kaggle.com/wendykan/lending-club-loan-data.
 
 Part 1: Data Exploration and Evaluation
