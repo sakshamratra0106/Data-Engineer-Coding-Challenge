@@ -18,7 +18,7 @@ Prioritize simplicity in your data model and processing code. Explain your thoug
 
 Solution => A high Level design of the Engineering part:-
 1. Here we can store the source data in SQLLite. 
-2. After that we can write a python code which can pick up the Table and crunch and Analyze it as in Part 1 using DataFrames. Here we add a new column named "Loan_Type" which is either Good Loan or Bad Load. Which will be further used in Part 3
+2. After that we can write a python code which can pick up the Table and crunch and Analyze it as in Part 1 using DataFrames. Here we add a new column named "Loan_condition" which is either Good Loan or Bad Load. Which will be further used in Part 3
 3. This Python code after crunching and Analysing the table will store data in new table in SQLite which could be "loan_analysed"
 4. To make this Part an automated part we can use Windows task Scheduler or CRON in Unix Systems to schedule this job(Python Code).
 5. The ETL code is written in python in file named "loan_ETL.py". 
