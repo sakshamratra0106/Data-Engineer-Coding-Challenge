@@ -19,9 +19,9 @@ Prioritize simplicity in your data model and processing code. Explain your thoug
 Solution => A high Level design of the Engineering part:-
 1. Here we can store the source data in SQLLite. 
 2. After that we can write a python code which can pick up the Table and crunch and Analyze it as in Part 1 using DataFrames. Here we add a new column named "Loan_Type" which is either Good Loan or Bad Load. Which will be further used in Part 3
-3. This Python code after crunching and Analysing the table will store data in new table in SQLLite which could be "loan_club_analysed"
+3. This Python code after crunching and Analysing the table will store data in new table in SQLite which could be "loan_club_analysed"
 4. To make this Part an automated part we can use Windows task Scheduler or CRON in Unix Systems to schedule this job(Python Code).
-
+5. The ETL code is written in python in file named "loan_ETL.py". 
 
 Part 3: Business Analysis
 After getting the data in the warehouse, your business analysts are interested in getting answers to the following, please write SQL queries and share the resultant data.
@@ -31,35 +31,22 @@ Note :- Since in Part 2 Actual system and Table was not built hence the resultan
 1.Assuming the loans with status that are ‘Current’, ‘Issued’ and ‘Fully Paid’ as “Good Loans”, what is the percentage of good loans across each the 36- and 60-month terms
 
 Solution => 
-Select loan_type, (Count(loan_type)* 100 / (Select Count(*) From MyTable where term='36 months')) as Score
-From  loan_club_analysed
-Having  term='36 months'
-Group By loan_type
+Select loan_condition, round((Count(loan_condition)* 100*1.0 / (Select Count(*) From loan_analysed where term=' 36 months')),2) || "%" as Score From loan_analysed where term=' 36 months' Group By loan_condition; 
 
-Select loan_type, (Count(loan_type)* 100 / (Select Count(*) From MyTable where term='60 months')) as Score
-From  loan_club_analysed
-Having  term='60 months'
-Group By loan_type
+Select loan_condition, round((Count(loan_condition)* 100 *1.0/ (Select Count(*) From loan_analysed where term=' 60 months')),2) || "%" as Score From loan_analysed where term=' 60 months' Group By loan_condition; 
 
 2.What are the title(s) of employee(s) who took the most loans and least number of loans.
 
 Solution =>
-select emp_title, count(*) from  loan_club_analysed
-group by emp_title
-order by count(*) desc limit 1
+select emp_title, count() from loan_analysed where emp_title !="" group by emp_title order by count() desc limit 1; 
 
-select emp_title, count(*) from  loan_club_analysed
-group by emp_title
-order by count(*)  limit 1
+select emp_title, count() from loan_analysed group by emp_title order by count() limit 10; 
 
 
 3.What is the most common purpose of the loans that are considered “Bad Loans” (please use definition mentioned for “Good Loans” in #1 above).
 
 Solution =>
-select description, count(*) from  loan_club_analysed
-having loan_type="Bad  Loans"
-group by description
-order by count(*) desc limit 1
+select purpose, count() from loan_analysed where loan_condition="Bad Loan" group by purpose order by count() desc limit 1; 
 
 Artifacts
 Submit all code and documentation via GitHub. Please include all code files, outputs, and visualizations in the repository. Include a separate documentation file with your project detailing the design, approach and implementation.
