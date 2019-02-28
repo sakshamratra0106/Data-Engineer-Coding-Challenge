@@ -1,4 +1,4 @@
-##This ReadMe file is also provided in well formated manner in an WordDocument "Readme.docx"
+##This ReadMe file is also provided in well formated manner in an WordDocument "Readme.docx" with screen shot of query results of PART3. 
 
 We will be exploring Lending Club’s loan origination data from 2007-2015. Please download the dataset in CSV format (loan.csv) and associated dictionary (LCDataDictionary.xlsx) fromhttps://www.kaggle.com/wendykan/lending-club-loan-data.
 
@@ -19,9 +19,10 @@ Prioritize simplicity in your data model and processing code. Explain your thoug
 Solution => A high Level design of the Engineering part:-
 1. Here we can store the source data in SQLLite. 
 2. After that we can write a python code which can pick up the Table and crunch and Analyze it as in Part 1 using DataFrames. Here we add a new column named "Loan_Type" which is either Good Loan or Bad Load. Which will be further used in Part 3
-3. This Python code after crunching and Analysing the table will store data in new table in SQLite which could be "loan_club_analysed"
+3. This Python code after crunching and Analysing the table will store data in new table in SQLite which could be "loan_analysed"
 4. To make this Part an automated part we can use Windows task Scheduler or CRON in Unix Systems to schedule this job(Python Code).
 5. The ETL code is written in python in file named "loan_ETL.py". 
+6. Note :- Queries are working fine and time taken by them to give results are also within 20 seconds. Still there is a huge scope of optimization, like :- removing unneccesary columns from the target tables, removing blank and space from the records etc.
 
 Part 3: Business Analysis
 After getting the data in the warehouse, your business analysts are interested in getting answers to the following, please write SQL queries and share the resultant data.
